@@ -26,13 +26,14 @@ random.shuffle(num)
 
 '''各カウントアップ'''
 count_up = 0
-count_up_bingo = 0
-count_up_reach = 0
+
 
 
 '''各判定処理'''
 for b_num in num:
     count_up = count_up + 1
+    count_up_bingo = 0
+    count_up_reach = 0
     if b_num in df1.values:
         df1 = df1.replace(b_num, '{' + str(b_num) + '}')
         df = df1.astype(str)
@@ -46,35 +47,39 @@ for b_num in num:
         for c in df.columns:
             count = sum(df[c].str.endswith('}')) + sum(df[c] == 'FREE')
             if count == 5:
-                print(f'{c}:ビンゴ！')
+                count_up_bingo = count_up_bingo + 1
             elif count == 4:
-                print(f'{c}:リーチ！')
+                count_up_reach = count_up_reach + 1
 
         '''行判定'''
         for r in df.index:
             count = sum(df.loc[r].str.endswith('}')) + sum(df.loc[r] == 'FREE')
             if count == 5:
-                print(f'{r}:ビンゴ！')
+                count_up_bingo = count_up_bingo + 1
             elif count == 4:
-                print(f'{r}:リーチ！')
+                count_up_reach = count_up_reach + 1
 
         '''斜め判定＼'''
         diagonal_r = list(np.diag(df1))
         lst = [i for i in diagonal_r if isinstance(i, str)]  # 文字列のみ
         cnt = len(lst)
         if cnt == 5:
-            print('斜め＼ビンゴ！')
+            count_up_bingo = count_up_bingo + 1
         elif cnt == 4:
-            print('斜め＼リーチ！')
+            count_up_reach = count_up_reach + 1
 
         '''斜め判定2／'''
         diagonal_l = list(np.diag(np.fliplr(df1)))
         lst = [i for i in diagonal_l if isinstance(i, str)]  # 文字列のみ
         cnt2 = len(lst)
         if cnt2 == 5:
-            print('斜め／ビンゴ！')
+            count_up_bingo = count_up_bingo + 1
         elif cnt2 == 4:
-            print('斜め／リーチ！')
+            count_up_reach = count_up_reach + 1
+
+
+        print('ビンゴ数：' + str(count_up_bingo))
+        print('リーチ数：' + str(count_up_reach))
 
     else:
         print('')
@@ -82,6 +87,8 @@ for b_num in num:
         print('ボールの番号は' + str(b_num) + 'です。ハズレです！')
         print(df1)
         print('ーーーーーーーーーーーーーーーーーーーーーーーー')
+        print('ビンゴ数：' + str(count_up_bingo))
+        print('リーチ数：' + str(count_up_reach))
 
 if count_up == 75:
     print('')
