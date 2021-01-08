@@ -42,7 +42,6 @@ for b_num in num:
         print(str(count_up) + '回目！')
         print('ボールの番号は' + str(b_num) + 'です。当たりなので穴を開けます！')
         print(df1)
-        print('ーーーーーーーーーーーーーーーーーーーーーーーー')
 
         '''列判定'''
         for c in df.columns:
@@ -78,18 +77,22 @@ for b_num in num:
         elif cnt2 == 4:
             count_up_reach = count_up_reach + 1
 
-
+        '''ビンゴ、リーチのカウント'''
+        print('')
         print('ビンゴ数：' + str(count_up_bingo))
         print('リーチ数：' + str(count_up_reach))
+        print('ーーーーーーーーーーーーーーーーーーーーーーーー')
 
     else:
         print('')
         print(str(count_up) + '回目！')
         print('ボールの番号は' + str(b_num) + 'です。ハズレです！')
         print(df1)
-        print('ーーーーーーーーーーーーーーーーーーーーーーーー')
+        print('')
         print('ビンゴ数：' + str(count_up_bingo))
         print('リーチ数：' + str(count_up_reach))
+        print('ーーーーーーーーーーーーーーーーーーーーーーーー')
+
 
 if count_up == 75:
     print('')
