@@ -28,13 +28,14 @@ random.shuffle(num)
 count_up = 0
 
 
-
 '''各判定処理'''
 for b_num in num:
     count_up = count_up + 1
-    count_up_bingo = 0
-    count_up_reach = 0
+
+    '''当たりが出た時の処理'''
     if b_num in df1.values:
+        count_up_bingo = 0
+        count_up_reach = 0
         df1 = df1.replace(b_num, '{' + str(b_num) + '}')
         df = df1.astype(str)
         print('')
@@ -59,7 +60,7 @@ for b_num in num:
             elif count == 4:
                 count_up_reach = count_up_reach + 1
 
-        '''斜め判定＼'''
+        '''斜め判定1＼'''
         diagonal_r = list(np.diag(df1))
         lst = [i for i in diagonal_r if isinstance(i, str)]  # 文字列のみ
         cnt = len(lst)
