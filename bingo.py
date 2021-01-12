@@ -33,7 +33,7 @@ count_up_reach = 0
 for b_num in num:
     count_up = count_up + 1
 
-    '''当たりが出た時の処理'''
+    '''当たりが出た場合の処理'''
     if b_num in df1.values:
         count_up_bingo = 0
         count_up_reach = 0
@@ -84,6 +84,7 @@ for b_num in num:
         print('リーチ数：' + str(count_up_reach))
         print('ーーーーーーーーーーーーーーーーーーーーーーーー')
 
+    #ハズレが出た場合の処理
     else:
         print('')
         print(str(count_up) + '回目！')
@@ -93,7 +94,6 @@ for b_num in num:
         print('ビンゴ数：' + str(count_up_bingo))
         print('リーチ数：' + str(count_up_reach))
         print('ーーーーーーーーーーーーーーーーーーーーーーーー')
-
 
 if count_up == 75:
     print('')
