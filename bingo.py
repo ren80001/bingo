@@ -26,7 +26,8 @@ random.shuffle(num)
 
 '''各カウントアップ'''
 count_up = 0
-
+count_up_bingo= 0
+count_up_reach = 0
 
 '''各判定処理'''
 for b_num in num:
